@@ -70,7 +70,7 @@ Hindsight 서버 (내 컴퓨터, 127.0.0.1만)
 |---|---|
 | `make check-env`, `make models`, `make start/stop/check EP=01` | 실습 스크립트 실행 |
 | `curl -s http://127.0.0.1:8888/*` | 로컬 서버 상태 확인 |
-| `lsof -i :8888`, `tail -n N data/logs/hindsight.log` | FAQ 진단 |
+| `lsof -i :8888`, `tail -n 50 data/logs/hindsight.log` | FAQ 진단 |
 | `mcp__hindsight__retain`, `mcp__hindsight__sync_retain`, `mcp__hindsight__recall` | 세션 A/B의 저장·회상 |
 
 막아 둔 것: `hindsight/.env` 읽기·편집·`cat`. `make reset`과 나머지 Hindsight 도구(delete_bank, clear_memories 등 36개 중 33개)는 허용하지 않았으니 부르면 Claude Code가 물어본다.

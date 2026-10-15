@@ -12,7 +12,7 @@
       "Bash(make check *)",
       "Bash(curl -s http://127.0.0.1:8888/*)",
       "Bash(lsof -i :8888)",
-      "Bash(tail -n * data/logs/hindsight.log)",
+      "Bash(tail -n 50 data/logs/hindsight.log)",
       "mcp__hindsight__retain",
       "mcp__hindsight__sync_retain",
       "mcp__hindsight__recall"
