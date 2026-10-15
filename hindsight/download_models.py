@@ -71,9 +71,9 @@ def main() -> int:
             print("✗ ollama 명령이 없습니다. labs/01/README.md의 Ollama 설치를 보세요.")
             return 1
         t = time.time()
-        r = subprocess.run(["ollama", "pull", model], capture_output=True, text=True)
-        if r.returncode != 0:
-            print(f"✗ ollama pull {model} 실패:\n{r.stderr[-500:]}")
+        print(f"• ollama pull {model}")
+        if subprocess.run(["ollama", "pull", model]).returncode != 0:
+            print(f"✗ ollama pull {model} 실패")
             return 1
         rows.append((f"ollama {model}", "LLM", f"{time.time() - t:.1f}초"))
 
