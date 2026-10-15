@@ -13,7 +13,7 @@
 
 1. **준비물 확인**: `make check-env` (check_00). Python 3.12·uv·git·Claude Code, 포트 8888, LLM 공급자를 본다. Windows는 WSL2 안에서 저장소를 받는다.
 2. **LLM 공급자 고르기**: `cp hindsight/.env.example hindsight/.env`.
-   - 기본은 **Ollama**(키 없음, 내 컴퓨터에서 실행). macOS는 `brew install ollama && brew services start ollama`(끄기: `brew services stop ollama`), Linux는 ollama.com의 설치 스크립트. 권장 모델 `gemma3:12b`(내려받기 8.2GB, 실행 중 메모리 약 8GB). 16GB 미만 컴퓨터는 API 키 공급자를 쓴다.
+   - 기본은 **Ollama**(키 없음, 내 컴퓨터에서 실행). macOS는 `brew install ollama && brew services start ollama`(끄기: `brew services stop ollama`), Linux는 ollama.com의 설치 스크립트. 권장 모델 `gemma3:12b`(내려받기 8.2GB, 실행 중 메모리 약 8GB). Hindsight 서버도 약 2GB를 쓰므로 메모리 16GB 미만 컴퓨터는 API 키 공급자를 쓴다.
    - **API 키 공급자**(anthropic·openai 등)를 쓰려면 `.env`의 Ollama 네 줄을 주석 처리하고 대안 블록을 연다. 키는 `.env`에만 둔다(.gitignore에 들어 있음).
    - `HINDSIGHT_API_HOST=127.0.0.1`, `HINDSIGHT_API_EMBEDDINGS_PROVIDER=onnx`, `HINDSIGHT_API_RERANKER_PROVIDER=rrf`, `HINDSIGHT_API_MCP_ENABLED_TOOLS=sync_retain,recall` 줄은 지우지 않는다.
    - LLM 요청 추적은 기본으로 켜져 있고 1일 보관된다(`HINDSIGHT_API_LLM_TRACE_RETENTION_DAYS`).
@@ -84,7 +84,7 @@ Hindsight 서버 (내 컴퓨터, 127.0.0.1만)
 
 1. **포트 8888이 이미 사용 중** → `lsof -i :8888`로 확인해 그 프로그램을 끈다. 바꾸려면 `.env`의 `HINDSIGHT_API_PORT`와 MCP 주소를 함께 바꾼다.
 2. **Intel Mac에서 설치 실패** → hindsight-api의 의존성(torch)이 Intel Mac 휠을 내지 않는다. start.sh가 감지해 멈춘다. Hindsight 문서의 `hindsight-all-slim` 설치 안내를 따른다(이 저장소 스크립트 밖).
-3. **첫 실행이 오래 걸림** → `make models`가 패키지 약 1.8GB와 임베딩 모델을 받고, 첫 `make start`가 내장 DB(PostgreSQL)와 pgvector를 `~/.pg0`에 준비한다. 프록시 환경이면 `HF_ENDPOINT`나 수동 다운로드(Hugging Face에서 `intfloat/multilingual-e5-small`의 `onnx/model.onnx`와 토크나이저 파일을 `.cache/huggingface/hub/`에)를 쓴다.
+3. **첫 실행이 오래 걸림** → 오래 걸리는 것은 `make models`다: 패키지 약 1.8GB(.venv), 임베딩 모델 약 470MB(.cache), Ollama 모델 8.2GB. 리허설(Mac mini M4 Pro, 캐시 없음)에서 약 2분이 걸렸다. 내장 DB(PostgreSQL 18, pgvector)는 패키지 안에 들어 있어 첫 `make start` 때 `~/.pg0`에 풀기만 한다(약 2초, 내려받기 없음). 프록시 환경이면 `HF_ENDPOINT`나 수동 다운로드(Hugging Face에서 `intfloat/multilingual-e5-small`의 `onnx/model.onnx`와 토크나이저 파일을 `.cache/huggingface/hub/`에)를 쓴다.
 4. **같은 네트워크에서 접근 가능해 보임** → hindsight-api 1.0.0의 기본 호스트는 0.0.0.0이다(config.py 1514행). start.sh가 `HINDSIGHT_API_HOST=127.0.0.1`을 강제하고 test_01_bind가 확인한다.
 5. **MCP 서버가 안 보임** → `claude mcp add`의 기본 범위는 local(현재 프로젝트)이다. 이 폴더에서 추가했는지 `claude mcp list`로 확인하고 새 세션을 연다. 주소 끝의 `/`까지 정확히 쓴다.
 6. **새 세션이 Hindsight 없이도 기억하는 것처럼 보임** → Claude Code 자동 기억이 켜져 있으면 생긴다. `/memory`에서 꺼져 있는지 보고, `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 claude`로 연다.
