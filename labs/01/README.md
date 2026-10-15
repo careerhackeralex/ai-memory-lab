@@ -21,7 +21,7 @@
 
 ## 진행
 
-1. 이 폴더에서 Claude Code를 연다: `claude` (자동 기억까지 확실히 끄려면 `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 claude`).
+1. 이 폴더에서 Claude Code를 연다: `claude` (자동 기억까지 확실히 끄려면 `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 claude`). 처음 열면 '이 폴더를 신뢰하나요' 질문과 함께 `.claude/settings.json`이 미리 허용한 권한 14개가 표시된다. 아래 '미리 허용한 것'과 같은지 보고 `Yes, I trust this folder`를 고른다. 신뢰하지 않은 폴더에서는 Claude Code가 이 허용 목록을 무시한다(`claude -p`도 마찬가지).
 2. `labs/01/PROMPT.md`의 상자 안 글을 붙여 넣는다. Claude가 `make check-env` → `make start EP=01` → `make check EP=01`을 실행해 결과를 보여 주고, MCP 연결 명령과 데이터 흐름 세 줄을 출력한다. 이 명령들은 `.claude/settings.json`에서 미리 허용해 두어 권한 질문 없이 실행된다(아래 '미리 허용한 것').
 3. Claude Code를 끄고(`/exit`) 같은 폴더의 터미널에서 MCP를 연결한다:
    ```bash
@@ -94,7 +94,8 @@ Hindsight 서버 (내 컴퓨터, 127.0.0.1만)
 10. **세션 B가 recall을 부르지 않고 모른다고 답함** → 도구를 부를지는 모델이 정한다. CLAUDE.md의 recall 안내 줄이 있는지 보고, 'Hindsight에서 찾아서'를 붙여 다시 묻는다.
 11. **도구 목록에 retain이 없고 sync_retain만 보임** → 버전·설정에 따라 노출 이름이 다를 수 있어 test_01_mcp는 둘 중 하나면 통과한다(1.0.0은 둘 다 노출).
 12. **Windows에서 start.sh가 실행되지 않음** → WSL2 안에서 저장소를 받아 실행한다.
-13. **실패가 반복됨** → `make reset`으로 memory-lab 인스턴스와 로그를 지우고 `make start EP=01`부터 다시 한다.
+13. **저장소를 새로 받았는데 예전 기억이 나옴** → 내장 DB는 저장소 밖 `~/.pg0/instances/memory-lab`에 있어 저장소를 지우거나 다시 받아도 남는다. 처음부터 하려면 `make reset`.
+14. **실패가 반복됨** → `make reset`으로 memory-lab 인스턴스와 로그를 지우고 `make start EP=01`부터 다시 한다.
 
 ## 비용
 
