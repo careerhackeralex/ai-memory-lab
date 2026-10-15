@@ -1,0 +1,15 @@
+# 키와 로컬 설정
+.env
+hindsight/.env
+*.local.json
+.claude/settings.local.json
+# 가상환경·캐시
+.venv/
+.cache/
+__pycache__/
+.pytest_cache/
+# 실행 데이터·로그·추적
+data/
+traces/
+*.log
+*.pid

@@ -1,0 +1,16 @@
+[project]
+name = "ai-memory-lab"
+version = "0.1.0"
+description = "AI 기억 설계 실습 저장소 (가짜 데이터만 사용)"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "hindsight-api==1.0.0",
+    "pytest>=8",
+    "httpx>=0.27",
+]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+addopts = "-p no:cacheprovider"

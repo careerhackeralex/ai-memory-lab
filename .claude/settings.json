@@ -1,0 +1,27 @@
+{
+  "autoMemoryEnabled": false,
+  "permissions": {
+    "allow": [
+      "Bash(make check-env)",
+      "Bash(make models)",
+      "Bash(make start EP=01)",
+      "Bash(make stop EP=01)",
+      "Bash(make check EP=01)",
+      "Bash(make start *)",
+      "Bash(make stop *)",
+      "Bash(make check *)",
+      "Bash(curl -s http://127.0.0.1:8888/*)",
+      "Bash(lsof -i :8888)",
+      "Bash(tail -n * data/logs/hindsight.log)",
+      "mcp__hindsight__retain",
+      "mcp__hindsight__sync_retain",
+      "mcp__hindsight__recall"
+    ],
+    "deny": [
+      "Read(./hindsight/.env)",
+      "Edit(./hindsight/.env)",
+      "Bash(cat hindsight/.env)",
+      "Bash(cat ./hindsight/.env)"
+    ]
+  }
+}
