@@ -9,7 +9,10 @@ hindsight/.env
 __pycache__/
 .pytest_cache/
 # 실행 데이터·로그·추적
-data/
+/data/*
+# 실습 입력 데이터(가상)는 저장소에 넣는다
+!/data/memos_02.jsonl
+!/data/questions_02.jsonl
 traces/
 *.log
 *.pid

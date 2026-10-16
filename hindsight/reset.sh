@@ -14,5 +14,5 @@ if [ -x "$VENV/bin/python" ]; then
     echo "• 내장 DB 인스턴스 $PG0_INSTANCE가 없습니다."
   fi
 fi
-rm -rf "$DATA_DIR/logs" "$DATA_DIR/check_01"
-echo "• 로그 삭제 (data/logs). 다시 시작: make start EP=01"
+rm -rf "$DATA_DIR/logs" "$DATA_DIR/check_01" "$DATA_DIR/check_02"
+echo "• 로그 삭제 (data/logs). 다시 시작: make start EP=01 (실습 02는 EP=02, 메모를 다시 넣는다)"

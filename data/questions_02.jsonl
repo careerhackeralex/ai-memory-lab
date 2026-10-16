@@ -1,0 +1,10 @@
+{"id": "q01", "question": "하린이 요즘 사는 동네는 어디야?", "has_answer": true, "accept": ["성수", "seongsu"], "gold_memo_ids": ["m03", "m31"]}
+{"id": "q02", "question": "하린이 요즘 분석 업무에 주로 쓰는 프로그래밍 언어는?", "has_answer": true, "accept": ["python", "파이썬"], "gold_memo_ids": ["m05", "m27"]}
+{"id": "q03", "question": "하린의 현재 상사는 누구야?", "has_answer": true, "accept": ["최서진", "choiseojin", "seojinchoi", "choiseo-jin", "seo-jinchoi"], "gold_memo_ids": ["m07", "m34"]}
+{"id": "q04", "question": "하린이 키우는 반려동물의 이름은?", "has_answer": true, "accept": ["보리", "bori"], "gold_memo_ids": ["m09"]}
+{"id": "q05", "question": "'등대' 프로젝트의 출시일은 언제로 바뀌었어?", "has_answer": true, "accept": ["5월20일", "05-20", "5/20", "may20", "20may"], "gold_memo_ids": ["m20", "m33"]}
+{"id": "q06", "question": "하린이 오후에 마시는 음료는?", "has_answer": true, "accept": ["루이보스", "rooibos"], "gold_memo_ids": ["m11", "m29"]}
+{"id": "q07", "question": "하린이 발표하러 가는 컨퍼런스는 어느 도시에서 열려?", "has_answer": true, "accept": ["부산", "busan"], "gold_memo_ids": ["m48"]}
+{"id": "q08", "question": "하린의 혈액형은?", "has_answer": false, "accept": [], "gold_memo_ids": []}
+{"id": "q09", "question": "하린이 졸업한 대학교 이름은?", "has_answer": false, "accept": [], "gold_memo_ids": []}
+{"id": "q10", "question": "데이터팀의 연간 예산은 얼마야?", "has_answer": false, "accept": [], "gold_memo_ids": []}
