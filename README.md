@@ -2,6 +2,8 @@
 
 강의 시리즈 「AI 기억 설계」의 실습 저장소. 가짜 데이터만 쓴다.
 
+편별 실습: 1편 → [`labs/01/PROMPT.md`](labs/01/PROMPT.md) ([안내](labs/01/README.md)) · 2편 → [`labs/02/PROMPT.md`](labs/02/PROMPT.md) ([안내](labs/02/README.md))
+
 ```bash
 make check-env                             # 준비물 확인 (labs/00)
 cp hindsight/.env.example hindsight/.env   # LLM 공급자 고르기 (기본: Ollama)
