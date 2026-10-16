@@ -45,3 +45,5 @@ claude -p "<질문>" --strict-mcp-config --mcp-config <미니 메모리만 적�
 대화형 세션은 격리하지 않는다. 저장소의 `.claude/settings.json`(`autoMemoryEnabled: false`)과 CLAUDE.md의 recall 안내 한 줄이 적용된 상태에서, `claude mcp add`로 붙인 Hindsight MCP만 기억 역할을 한다. 확실히 하려면 `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 claude`로 연다.
 
 리허설 확인(2026-10-15, Claude Code 2.1.300): 위 기본값으로 `claude -p "한 단어로: 2+2는?"`가 오류 없이 답했고(`is_error: false`), JSON에 `total_cost_usd`와 `usage`가 들어 있었다.
+
+리허설 확인(2026-10-16, Claude Code 2.1.301, 실습 02): 위 플래그가 모두 그대로 있고, 구독 로그인에서 `--safe-mode`와 `-p`가 함께 동작했다(답변 60회, 오류 0). JSON의 입력 토큰은 `usage.input_tokens`(캐시되지 않은 부분, 2 정도) + `usage.cache_creation_input_tokens` + `usage.cache_read_input_tokens`의 합이다. Claude Code가 시스템 프롬프트를 자동으로 캐시하므로 `input_tokens` 하나만 보면 안 된다.
