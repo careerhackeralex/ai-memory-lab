@@ -13,7 +13,7 @@
 ## 진행
 
 1. **틀 준비**: `make start EP=03`. Hindsight를 켜고(6단계용), `labs/03/skeleton`을 `mini_memory/`로 복사한 뒤 `mini_memory/.venv`를 만들고(mcp 2.x), 마지막에 `labs/03/INTERFACE.md`를 출력한다. 틀에는 pyproject.toml(의존성 mcp, 진입점은 아직 없음)과 빈 모듈 세 개(store·server·cli)만 있다.
-2. **구현**: 이 폴더에서 Claude Code를 열고(`claude`) `labs/03/PROMPT.md`의 상자 안 글을 붙여 넣는다. Claude가 INTERFACE.md와 테스트를 읽고 `mini_memory/`를 채운 뒤 `make check EP=03`이 통과할 때까지 고친다. `mini_memory/` 쓰기와 `uv run --project mini_memory …`, `make check`는 `.claude/settings.json`에서 미리 허용해 두었다.
+2. **구현**: 이 폴더에서 Claude Code를 열고(`claude`) `labs/03/PROMPT.md`의 상자 안 글을 붙여 넣는다. Claude가 INTERFACE.md와 테스트를 읽고 `mini_memory/`를 채운 뒤 `make check EP=03`이 통과할 때까지 고친다. `mini_memory/` 쓰기와 `uv run --project mini_memory mm …`·`mini-memory …`, `make check`는 `.claude/settings.json`에서 미리 허용해 두었다.
 3. **테스트**: `make check EP=03` → `8 passed`. 테스트는 고치지 않는다.
 4. **Claude Code에서 MCP로 쓰기**: 저장소 폴더에서
    ```bash

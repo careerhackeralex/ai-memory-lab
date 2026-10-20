@@ -43,9 +43,10 @@ def test_03_type_enum(server, db):
         assert str(m.get("id", "")).startswith("clm_"), f"id는 clm_로 시작: {m.get('id')}"
     con = sqlite3.connect(db)
     try:
-        with pytest.raises(sqlite3.IntegrityError):
-            con.execute("INSERT INTO claims (id, content, type, recorded_at) VALUES (?, ?, ?, ?)",
-                        ("clm_check", "CHECK 제약 확인", "opinion", "2026-03-02T00:00:00Z"))
+        for bad in ("opinion", "working"):
+            with pytest.raises(sqlite3.IntegrityError):
+                con.execute("INSERT INTO claims (id, content, type, recorded_at) VALUES (?, ?, ?, ?)",
+                            (f"clm_check_{bad}", "CHECK 제약 확인", bad, "2026-03-02T00:00:00Z"))
     finally:
         con.close()
 
