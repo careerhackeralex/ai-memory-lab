@@ -17,6 +17,11 @@
       "Write(./labs/02/compare.py)",
       "Bash(.venv/bin/python labs/02/compare.py --dry-run)",
       "Bash(.venv/bin/python labs/02/compare.py --dry-run *)",
+      "Edit(./mini_memory/**)",
+      "Write(./mini_memory/**)",
+      "Bash(uv run --project mini_memory *)",
+      "mcp__mini-memory__remember",
+      "mcp__mini-memory__recall",
       "mcp__hindsight__retain",
       "mcp__hindsight__sync_retain",
       "mcp__hindsight__recall"
