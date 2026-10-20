@@ -79,7 +79,11 @@
 
 ## 시간과 비용
 
-(리허설 측정값으로 채운다)
+숫자는 2026-10-19 리허설 2·3회차(Mac mini M4 Pro 48GB, Claude Code 2.1.304, Ollama gemma3:12b, 깨끗한 클론) 기준이다.
+
+- 시간(기계 시간, 사람이 읽는 시간 제외): `make start EP=03` 15~17초(서버 + mini_memory/.venv), 프롬프트(구현 + `make check`) 70~76초, `make check EP=03` 약 6초, MCP로 저장·회상(4단계) 22~24초, `uv run mm` 한 번에 약 3초, `show_hindsight.py` 2.5~3.7분(retain 51~75초 + 관찰 통합 99~145초). 합계 약 6~7분. 시청자 실제 소요는 읽기·붙여 넣기를 더해 약 20분.
+- Claude Code 사용(구독이면 한도에서 차감, API 키면 과금. Claude Code가 `total_cost_usd`로 보고한 명목값, 모델 claude-opus-5-5): 구현 프롬프트 1회 0.69~0.77 USD(1회차 0.83), 4단계 MCP 대화 1회 0.28 USD. 미니 메모리 자체는 LLM을 부르지 않는다.
+- Hindsight LLM(6단계 retain 한 번): 추출 1회 입력 2,602 · 출력 1,066~1,367 토큰 + 관찰 통합 2회 입력 약 9,950~10,020 · 출력 977~1,447 토큰. Ollama는 로컬이라 0원, API 키 공급자면 이 토큰 수만큼 그 공급자 요금.
 
 ## FAQ (막혔을 때, 위에서부터)
 
@@ -91,5 +95,6 @@
 6. **Hindsight 쪽 패키지가 사라지거나 mcp 버전이 섞임** → 미니 메모리는 `mini_memory/.venv`, Hindsight는 저장소 `.venv`를 쓴다. 저장소 폴더에서 `uv sync`나 `uv add`를 직접 치지 말고 Makefile 명령과 `uv run --project mini_memory …`만 쓴다.
 7. **`claude mcp add` 뒤에도 도구가 안 보임** → 범위 문제다. 저장소 폴더에서 추가하고(기본 범위 local은 그 폴더에만 적용), Claude Code를 다시 열어 `/mcp`로 확인한다.
 8. **show_hindsight.py 표가 기대와 다름 (네트워크·문장)** → 추출과 통합은 LLM이 하므로 실행마다 달라진다. 관찰 단계라 채점하지 않는다. 다시 넣어 보려면 `--fresh`.
-9. **observation이 0개이거나 '300초 안에 안 끝남'** → 통합은 retain 뒤 비동기로 돈다. Ollama에서는 몇 분 걸릴 수 있다. 나중에 `.venv/bin/python labs/03/show_hindsight.py`를 다시 실행하면(retain은 건너뜀) 그때까지 생긴 관찰을 보여 준다.
-10. **절차 기억을 자유 문장으로 저장함** → 이 편은 형식을 검사하지 않지만 EP13부터 최소 SKILL.md 형식(머리말 name·description + 번호 단계)이 필수다. 지금부터 그 형식으로 쓴다.
+9. **Hindsight 사실이 영어로 나옴** → 추출 LLM(gemma3:12b)이 실행에 따라 한국어 대화를 영어 사실로 적는다(리허설 3회 중 1회). Hindsight 규칙은 '입력과 같은 언어'지만 지키지 않을 때가 있다. 네트워크 나뉨은 그대로 볼 수 있다. 한국어로 다시 보려면 `--fresh`.
+10. **observation이 0개이거나 '300초 안에 안 끝남'** → 통합은 retain 뒤 비동기로 돈다. Ollama에서는 몇 분 걸릴 수 있다. 나중에 `.venv/bin/python labs/03/show_hindsight.py`를 다시 실행하면(retain은 건너뜀) 그때까지 생긴 관찰을 보여 준다.
+11. **절차 기억을 자유 문장으로 저장함** → 이 편은 형식을 검사하지 않지만 EP13부터 최소 SKILL.md 형식(머리말 name·description + 번호 단계)이 필수다. 지금부터 그 형식으로 쓴다.
