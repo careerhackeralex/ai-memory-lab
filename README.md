@@ -2,7 +2,7 @@
 
 강의 시리즈 「AI 기억 설계」의 실습 저장소. 가짜 데이터만 쓴다.
 
-편별 실습: 1편 → [`labs/01/PROMPT.md`](labs/01/PROMPT.md) ([안내](labs/01/README.md)) · 2편 → [`labs/02/PROMPT.md`](labs/02/PROMPT.md) ([안내](labs/02/README.md))
+편별 실습: 1편 → [`labs/01/PROMPT.md`](labs/01/PROMPT.md) ([안내](labs/01/README.md)) · 2편 → [`labs/02/PROMPT.md`](labs/02/PROMPT.md) ([안내](labs/02/README.md)) · 3편 → [`labs/03/PROMPT.md`](labs/03/PROMPT.md) ([안내](labs/03/README.md))
 
 ```bash
 make check-env                             # 준비물 확인 (labs/00)
@@ -15,6 +15,12 @@ make start EP=02                           # Hindsight + 뱅크 lab02에 가상 
 # claude를 열고 labs/02/PROMPT.md를 붙여 넣는다 → labs/02/compare.py
 .venv/bin/python labs/02/compare.py        # claude -p 30회 → data/results_02.csv
 make check EP=02                           # test_02 + check_02 표
+
+# 실습 03
+make start EP=03                           # Hindsight + 미니 메모리 틀(mini_memory/) + INTERFACE.md
+# claude를 열고 labs/03/PROMPT.md를 붙여 넣는다 → Claude가 mini_memory/를 채운다
+make check EP=03                           # test_03 8개
+.venv/bin/python labs/03/show_hindsight.py # 같은 대화를 Hindsight 뱅크 lab03에 넣고 네트워크 표
 ```
 
 | 경로 | 내용 |
@@ -23,7 +29,10 @@ make check EP=02                           # test_02 + check_02 표
 | `labs/00/` | check_00: 준비물 확인 |
 | `labs/01/` | README(목표·준비·FAQ), PROMPT, tests(test_01_*), check_01 |
 | `labs/02/` | README·PROMPT·INTERFACE, seed_02(메모 50개 → 뱅크 lab02), tests(test_02_*), check_02 |
+| `labs/03/` | README·PROMPT·INTERFACE, skeleton(미니 메모리 틀 → `mini_memory/`), tests(test_03_*), show_hindsight |
+| `mini_memory/` | 실습 03부터 내가(Claude와) 만드는 미니 메모리. `make start EP=03`이 틀을 복사한다. 가상환경은 `mini_memory/.venv`로 따로 |
 | `data/*_02.jsonl` | 실습 02 입력: 가상 인물·가상 회사 메모 50개, 질문 10개 |
+| `data/conv_03.jsonl`, `data/sample_record_03*.md` | 실습 03 입력: 가상 대화 10턴, 따라 하기 프롬프트용 가상 작업 기록 두 개 |
 | `labs/tokens.py` | `count_tokens()` 입력 토큰 어림값 |
 | `labs/common.md` | `claude -p` 측정의 격리 플래그 |
 

@@ -13,6 +13,9 @@ __pycache__/
 # 실습 입력 데이터(가상)는 저장소에 넣는다
 !/data/memos_02.jsonl
 !/data/questions_02.jsonl
+!/data/conv_03.jsonl
+!/data/sample_record_03a.md
+!/data/sample_record_03b.md
 traces/
 *.log
 *.pid
