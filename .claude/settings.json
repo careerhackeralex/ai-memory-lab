@@ -23,6 +23,8 @@
       "Bash(uv run --project mini_memory mini-memory *)",
       "mcp__mini-memory__remember",
       "mcp__mini-memory__recall",
+      "mcp__mini-memory__record_event",
+      "mcp__mini-memory__supersede",
       "mcp__hindsight__retain",
       "mcp__hindsight__sync_retain",
       "mcp__hindsight__recall"
