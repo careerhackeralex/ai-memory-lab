@@ -1,5 +1,6 @@
 """test_04_history: include_history=true면 results가 (recorded_at, id) 오름차순이다.
-t1·t2의 두 claim은 시각 순으로, 같은 시각에 기록된 claim끼리는 id 순으로 나온다."""
+t1·t2의 두 claim은 시각 순으로, 같은 시각에 기록된 claim끼리는 id 순으로 나온다. limit이 작으면 최근 것부터 limit개를 고른 뒤
+오름차순으로 돌려준다."""
 from conftest import NEW_PRICE, OLD_PRICE, T1, T1Z, T2, T2Z
 
 
@@ -19,6 +20,9 @@ def test_04_history(server):
     assert got[0] == (T1Z, a["id"]), f"t1의 옛 claim이 맨 앞: {got}"
     same_time = [i for t, i in got if t == T2Z]
     assert same_time == sorted([b["id"], c["id"], d["id"]]), f"같은 시각(t2)의 claim은 id 순: {same_time}"
+
+    two = s2.call("recall", {"query": "Acme 팀 플랜", "include_history": True, "limit": 2})
+    assert [(x["recorded_at"], x["id"]) for x in two["results"]] == got[-2:], f"limit=2면 최근 두 개를 오름차순으로: {two}"
 
     default = s2.call("recall", {"query": "Acme 팀 플랜", "limit": 20})
     assert a["id"] not in {x["id"] for x in default["results"]}, "기본 recall에는 대체된 claim이 없어야 합니다"
