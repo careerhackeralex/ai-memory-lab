@@ -17,7 +17,7 @@
 6. quote가 있으면 INTERFACE.md의 정규화(NFC, 따옴표 통일, 연속 공백 하나로) 뒤 derived_from에 든 이벤트 원문 가운데 하나에 부분 문자열로 있어야 저장하고, 아니면 저장하지 않고 이유를 도구 오류로 돌려준다.
 7. 모든 시각(events.recorded_at 포함)은 실습 03의 시계 함수 하나에서 얻는다(MINI_MEMORY_NOW, UTC, 끝에 Z).
 8. mm에 record-event와 supersede 하위 명령, remember의 --derived-from·--quote, recall의 --include-history를 더한다. MCP 도구와 같은 함수를 부르고 JSON 하나를 출력한다.
-9. labs/03/tests와 labs/04/tests의 파일은 고치지 않는다. 실패하면 구현을 고친다. mini_memory/ 밖의 파일은 고치지 않고 hindsight/.env는 열지 않는다. 직접 실행할 때는 저장소 폴더에서 uv run --project mini_memory … 형태로, 명령을 한 줄에 하나씩 부른다(미리 허용한 명령은 하나 단위로 맞춰 두었다). 설치된 패키지 소스는 파일 읽기·검색 도구로 본다.
+9. labs/03/tests와 labs/04/tests의 파일은 고치지 않는다. 실패하면 구현을 고친다. mini_memory/ 밖의 파일은 고치지 않고 hindsight/.env는 열지 않는다. 직접 실행할 때는 저장소 폴더에서 uv run --project mini_memory mm … 형태로, 명령을 한 줄에 하나씩 부른다(미리 허용한 명령은 하나 단위로 맞춰 두었다). 셸 반복문·변수와 python -c 같은 임시 확인 스크립트는 쓰지 않고, 동작 확인은 make check EP=04와 mm 명령으로 한다. 파일과 설치된 패키지 소스는 파일 읽기·검색 도구로 본다.
 10. mini_memory/README.md에 event와 claim의 뜻을 한 줄씩 더하고(event = 원본 기록, 지우지 않는다 / claim = 원본에서 뽑은 기억 한 조각, 고칠 때는 대체한다) 새 명령을 적는다.
 
 순서
