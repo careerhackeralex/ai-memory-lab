@@ -19,5 +19,5 @@ if [ -f "$MM_DB" ]; then
   rm -f "$MM_DB" "$MM_DB-wal" "$MM_DB-shm" "$MM_DB-journal"
   echo "• 미니 메모리 DB 삭제 (data/mini_memory.db). 다음 저장 때 CHECK 제약과 함께 새로 만들어진다"
 fi
-rm -rf "$DATA_DIR/logs" "$DATA_DIR/check_01" "$DATA_DIR/check_02"
-echo "• 로그 삭제 (data/logs). 다시 시작: make start EP=01 (실습 02는 EP=02, 메모를 다시 넣는다. 실습 03은 EP=03)"
+rm -rf "$DATA_DIR/logs" "$DATA_DIR/check_01" "$DATA_DIR/check_02" "$DATA_DIR/check_04"
+echo "• 로그 삭제 (data/logs). 다시 시작: make start EP=01 (실습 02는 EP=02, 메모를 다시 넣는다. 실습 03은 EP=03, 실습 04는 EP=04)"

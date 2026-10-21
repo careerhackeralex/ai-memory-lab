@@ -21,7 +21,7 @@
 
 ## 진행
 
-1. 이 폴더에서 Claude Code를 연다: `claude` (자동 기억까지 확실히 끄려면 `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 claude`). 처음 열면 '이 폴더를 신뢰하나요' 질문과 함께 `.claude/settings.json`이 미리 허용한 권한 24개(실습 02용 4개, 실습 03용 6개 포함)가 표시된다. 아래 '미리 허용한 것'과 같은지 보고 `Yes, I trust this folder`를 고른다. 신뢰하지 않은 폴더에서는 Claude Code가 이 허용 목록을 무시한다(`claude -p`도 마찬가지).
+1. 이 폴더에서 Claude Code를 연다: `claude` (자동 기억까지 확실히 끄려면 `CLAUDE_CODE_DISABLE_AUTO_MEMORY=1 claude`). 처음 열면 '이 폴더를 신뢰하나요' 질문과 함께 `.claude/settings.json`이 미리 허용한 권한 26개(실습 02용 4개, 실습 03용 6개, 실습 04용 2개 포함)가 표시된다. 아래 '미리 허용한 것'과 같은지 보고 `Yes, I trust this folder`를 고른다. 신뢰하지 않은 폴더에서는 Claude Code가 이 허용 목록을 무시한다(`claude -p`도 마찬가지).
 2. `labs/01/PROMPT.md`의 상자 안 글을 붙여 넣는다. Claude가 `make check-env` → `make start EP=01` → `make check EP=01`을 실행해 결과를 보여 주고, MCP 연결 명령과 데이터 흐름 세 줄을 출력한다. 이 명령들은 `.claude/settings.json`에서 미리 허용해 두어 권한 질문 없이 실행된다(아래 '미리 허용한 것').
 3. Claude Code를 끄고(`/exit`) 같은 폴더의 터미널에서 MCP를 연결한다:
    ```bash
@@ -74,6 +74,7 @@ Hindsight 서버 (내 컴퓨터, 127.0.0.1만)
 | `mcp__hindsight__retain`, `mcp__hindsight__sync_retain`, `mcp__hindsight__recall` | 세션 A/B의 저장·회상 |
 | `Edit`·`Write(./labs/02/compare.py)`, `.venv/bin/python labs/02/compare.py --dry-run` | 실습 02: compare.py 쓰기와 호출 없는 확인 |
 | `Edit`·`Write(./mini_memory/**)`, `uv run --project mini_memory mm *`·`mini-memory *`(미니 메모리의 두 명령만. `python` 등 다른 실행 파일은 매번 묻는다), `mcp__mini-memory__remember`·`recall` | 실습 03: 미니 메모리 코드 쓰기·실행, MCP 도구 저장·회상 |
+| `mcp__mini-memory__record_event`·`supersede` | 실습 04: 원본 기록 추가, 사실 대체 (코드 쓰기·`mm` 실행은 실습 03 허용 그대로) |
 
 막아 둔 것: `hindsight/.env` 읽기·편집·`cat`. `make reset`은 허용하지 않았으니 부르면 Claude Code가 물어본다. Hindsight 쪽에서도 `.env`의 `HINDSIGHT_API_MCP_ENABLED_TOOLS=sync_retain,recall`로 MCP 도구를 둘만 연다(1.0.0 기본은 delete_bank·clear_memories를 포함한 36개). `mcp__hindsight__retain` 허용은 이 줄을 지운 경우를 위해 남겨 두었다.
 

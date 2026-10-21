@@ -19,3 +19,10 @@ __pycache__/
 traces/
 *.log
 *.pid
+!/data/conv_04.jsonl
+!/data/sample_memory_04_old.md
+!/data/sample_memory_04_new.md
+!/data/sample_source_04.md
+!/data/sample_summary_04.md
+# make start EP=04가 옮겨 둔 내 앞 편 코드
+/backup/
