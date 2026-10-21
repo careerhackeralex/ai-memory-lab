@@ -21,8 +21,8 @@ def test_04_history(server):
     same_time = [i for t, i in got if t == T2Z]
     assert same_time == sorted([b["id"], c["id"], d["id"]]), f"같은 시각(t2)의 claim은 id 순: {same_time}"
 
-    two = s2.call("recall", {"query": "Acme 팀 플랜", "include_history": True, "limit": 2})
-    assert [(x["recorded_at"], x["id"]) for x in two["results"]] == got[-2:], f"limit=2면 최근 두 개를 오름차순으로: {two}"
+    three = s2.call("recall", {"query": "Acme 팀 플랜", "include_history": True, "limit": 3})
+    assert [(x["recorded_at"], x["id"]) for x in three["results"]] == got[-3:], f"limit=3이면 최근 세 개(t2의 세 claim)를 오름차순으로: {three}"
 
     default = s2.call("recall", {"query": "Acme 팀 플랜", "limit": 20})
     assert a["id"] not in {x["id"] for x in default["results"]}, "기본 recall에는 대체된 claim이 없어야 합니다"
